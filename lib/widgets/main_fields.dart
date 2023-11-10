@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,9 +6,9 @@ import '../utils/constant.dart';
 
 
 
-class TextFieldOne extends StatelessWidget {
+class TextFieldOne extends StatefulWidget {
   const TextFieldOne(
-      {super.key, required this.hinttext, required this.controller, required this.onchange, required this.obsecuretxt, this.preicon, this.keytype, this.fillcolor, this.sufix, });
+      {super.key, required this.hinttext, required this.controller, required this.onchange, required this.obsecuretxt, this.preicon, this.keytype, this.fillcolor, this.sufix,  });
 
   final String hinttext;
   final TextEditingController controller;
@@ -19,7 +20,11 @@ class TextFieldOne extends StatelessWidget {
   final Color? fillcolor;
 
 
+  @override
+  State<TextFieldOne> createState() => _TextFieldOneState();
+}
 
+class _TextFieldOneState extends State<TextFieldOne> {
 
   @override
   Widget build(BuildContext context) {
@@ -27,33 +32,38 @@ class TextFieldOne extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: TextFormField(
-
-        keyboardType: keytype,
+        keyboardType: widget.keytype,
         decoration: InputDecoration(
-          suffixIcon: sufix,
-          errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+          suffixIcon: widget.sufix,
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(width: 1, color: Colors.red),
+          ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
                 width: 2,
-                  color:app_color.withOpacity(.2)), // Border color when not in focus
+                  color:app_color), // Border color when not in focus
             ),
-            labelText: hinttext,
+            labelText: widget.hinttext,
             labelStyle: GoogleFonts.poppins(color: Colors.grey.withOpacity(.8)),
-            fillColor: fillcolor == null ? app_color.withOpacity(.05) : fillcolor,
+            fillColor: widget.fillcolor == null ? app_color.withOpacity(.05) : widget.fillcolor,
             filled: true,
+
+
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
                 width: 2,
                   color:app_color), // Border color when focused
             ),
+
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.white)),
 
         ),
-        style: TextStyle(color:Colors.white),
+        style: TextStyle(color:Colors.white,),
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'This field is required.';
@@ -61,10 +71,10 @@ class TextFieldOne extends StatelessWidget {
           return null;
         },
         cursorColor: app_color,
-        obscureText: obsecuretxt,
+        obscureText: widget.obsecuretxt,
         obscuringCharacter: '*',
-        controller: controller,
-        onChanged: onchange,
+        controller: widget.controller,
+        onChanged: widget.onchange,
 
       ),
     );

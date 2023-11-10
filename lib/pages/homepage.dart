@@ -23,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
               background: Center(
                 child: CircleAvatar(
                   radius: 50,
+                  backgroundColor: Colors.white,
                   // backgroundImage: NetworkImage('https://example.com/your_image.jpg'), // Replace with your image URL
                 ),
               ),
@@ -32,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
-                color: Colors.blue, // Change color as needed
+                color: Color.fromRGBO(16, 16, 16, 100), // Change color as needed
               ),
               height: 900, // Set the desired height
             ),
