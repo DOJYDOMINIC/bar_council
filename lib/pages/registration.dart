@@ -1,3 +1,4 @@
+import 'package:bar_council/services/otplogin.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../utils/constant.dart';
@@ -30,7 +31,7 @@ class _RegistrationState extends State<Registration> {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
       _imageFile = pickedFile;
-      print(_imageFile.toString());
+      debugPrint(_imageFile.toString());
     });
   }
 
@@ -44,16 +45,13 @@ class _RegistrationState extends State<Registration> {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController phone = TextEditingController();
-  final _formkey = GlobalKey<FormState>();
+  String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    double top = MediaQuery.of(context).padding.top;
-    double bottom = MediaQuery.of(context).padding.bottom;
-    double left = MediaQuery.of(context).padding.left;
-    double right = MediaQuery.of(context).padding.right;
+    // double top = MediaQuery.of(context).padding.top;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -144,7 +142,7 @@ class _RegistrationState extends State<Registration> {
                                     children: [
                                       Column(
                                         children: [
-                                          Icon(Icons.camera_alt,size: 50,),
+                                         const Icon(Icons.camera_alt,size: 50,),
                                           SizedBox(
                                             height: 30,
                                             child: ElevatedButton(
@@ -164,7 +162,7 @@ class _RegistrationState extends State<Registration> {
                                       ),
                                       Column(
                                         children: [
-                                          Icon(Icons.image,size: 50,),
+                                         const Icon(Icons.image,size: 50,),
                                           SizedBox(
                                             height: 30,
                                             child: ElevatedButton(
@@ -172,7 +170,7 @@ class _RegistrationState extends State<Registration> {
                                                 foregroundColor: Colors.white,
                                                 backgroundColor:Colors.black, // text color
                                               ),
-                                              child: Text('Gallery'),
+                                              child: const Text('Gallery'),
                                               onPressed: () {
                                                 _pickImageFromGallery();
                                                 // Add your logic if the user confirm
@@ -215,6 +213,7 @@ class _RegistrationState extends State<Registration> {
                         controller: phone,
                         onchange: (value) {
                           phonekey.currentState!.validate();
+                          phoneNumber =  value;
                         },
                         obsecuretxt: false,
                       ),
@@ -280,7 +279,9 @@ class _RegistrationState extends State<Registration> {
                         ),
                         onPressed: () {
                           if (useridkey.currentState!.validate()||phonekey.currentState!.validate()||passwordkey.currentState!.validate()||confirmpasswordkey.currentState!.validate()) {
+                              verifyOtp(phoneNumber!);
                             Navigator.push(context, MaterialPageRoute(builder: (context) => Otp(),));
+
                             debugPrint('new');
                           }
                         },

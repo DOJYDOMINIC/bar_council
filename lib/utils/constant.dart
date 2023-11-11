@@ -13,3 +13,6 @@ const String forogtpass  = 'Forgot password';
 const String acnt  = 'Don’t have an account ? ';
 const String signin  = 'Signup';
 
+
+ const baseUrl = "http://89.47.164.122:5000/api/registrations";
+

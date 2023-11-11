@@ -8,36 +8,50 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  
   @override
   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    double top = MediaQuery.of(context).padding.top;
+    double bottom = MediaQuery.of(context).padding.bottom;
+    double left = MediaQuery.of(context).padding.left;
+    double right = MediaQuery.of(context).padding.right;
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text('New'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10,),
+              child: IconButton(onPressed: (){}, icon: Icon(Icons.message,size: 30,)),
+            )
+          ],
             floating: true,
-            expandedHeight: 150,
-            flexibleSpace: FlexibleSpaceBar(
+            expandedHeight: 160,
+            flexibleSpace: const FlexibleSpaceBar(
               centerTitle: true,
-              background: Center(
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.white,
-                  // backgroundImage: NetworkImage('https://example.com/your_image.jpg'), // Replace with your image URL
+              background: Padding(
+                padding: EdgeInsets.only(top: 40),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage('assets/images/man.png'), // Replace with your image URL
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('User Name',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),),
+                    )
+                  ],
                 ),
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
-                color: Color.fromRGBO(16, 16, 16, 100), // Change color as needed
-              ),
-              height: 900, // Set the desired height
-            ),
-          ),
+
         ],
       ),
     );

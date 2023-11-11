@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
                     padding: EdgeInsets.only(top: top * 2),
                     child: Container(
                       height: height * .45,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.fill,
                           image: AssetImage('assets/images/net.png'),
@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                   Positioned(
                     top: top * 3,
                     left: 20,
-                    child: Text(
+                    child: const Text(
                       welcome,
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                   Positioned(
                     top: top * 5,
                     left: 20,
-                    child: Text(
+                    child: const Text(
                       logsubtext,
                       style: TextStyle(
                         fontWeight: FontWeight.w200,
@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
                             _obscureText
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.grey,
+                            color: Colors.grey
                           ),
                           onPressed: () {
                             setState(() {
@@ -138,11 +138,11 @@ class _LoginState extends State<Login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => const MyHomePage(),
                                 ));
                           }
                         },
-                        child: Text(
+                        child:const Text(
                           'Login',
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
@@ -180,7 +180,7 @@ class _LoginState extends State<Login> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Registration(),
+                                  builder: (context) => const Registration(),
                                 ));
                           },
                           child: Text(
